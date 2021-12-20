@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>WF_MoveXMLtoProcessing</name>
+    <name>WF_MoveToEmProcessamento</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -433,9 +433,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021&#x2f;12&#x2f;16 17&#x3a;53&#x3a;06.308</created_date>
+    <created_date>2021&#x2f;12&#x2f;20 11&#x3a;27&#x3a;44.982</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021&#x2f;12&#x2f;16 19&#x3a;07&#x3a;58.749</modified_date>
+    <modified_date>2021&#x2f;12&#x2f;20 12&#x3a;21&#x3a;47.438</modified_date>
 	<key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -444,42 +444,17 @@
   <order>
     <hop>
       <from>MJS_NewPath</from>
-      <to>Process files</to>
+      <to>PF_EmProcessamento</to>
+      <enabled>Y</enabled>
+      <visible>Y</visible>
+    </hop>
+    <hop>
+      <from>Get files from result</from>
+      <to>MJS_NewPath</to>
       <enabled>Y</enabled>
       <visible>Y</visible>
     </hop>
   </order>
-  <step>
-    <name>Process files</name>
-    <type>ProcessFiles</type>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <sourcefilenamefield>filename</sourcefilenamefield>
-    <targetfilenamefield>NewFileName</targetfilenamefield>
-    <operation_type>move</operation_type>
-    <addresultfilenames>Y</addresultfilenames>
-    <overwritetargetfile>N</overwritetargetfile>
-    <createparentfolder>N</createparentfolder>
-    <simulate>N</simulate>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>848</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
   <step>
     <name>MJS_NewPath</name>
     <type>ScriptValueMod</type>
@@ -494,9 +469,15 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;var DateNow &#x3d; new Date&#x28;&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;var NewFileName &#x3d; path &#x2b; &#x22;&#x5c;&#x5c;Processing&#x5c;&#x5c;&#x22; &#x2b; short_filename&#x3b;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>NewFileName</name>
-        <rename>NewFileName</rename>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;var OldPath &#x3d; &#x22;C&#x3a;&#x5c;&#x5c;XMLFiles&#x5c;&#x5c;NaoProcessados&#x5c;&#x5c;&#x22; &#x2b; filename&#x3b;&#xd;&#xa;var NewPath &#x3d; &#x22;C&#x3a;&#x5c;&#x5c;XMLFiles&#x5c;&#x5c;EmProcessamento&#x5c;&#x5c;&#x22; &#x2b; filename&#x3b;&#xd;&#xa;&#xd;&#xa;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>OldPath</name>
+        <rename>OldPath</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>NewPath</name>
+        <rename>NewPath</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -509,8 +490,63 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
-      <yloc>80</yloc>
+      <xloc>368</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>PF_EmProcessamento</name>
+    <type>ProcessFiles</type>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <sourcefilenamefield>OldPath</sourcefilenamefield>
+    <targetfilenamefield>NewPath</targetfilenamefield>
+    <operation_type>move</operation_type>
+    <addresultfilenames>Y</addresultfilenames>
+    <overwritetargetfile>N</overwritetargetfile>
+    <createparentfolder>N</createparentfolder>
+    <simulate>N</simulate>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>576</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Get files from result</name>
+    <type>FilesFromResult</type>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>160</xloc>
+      <yloc>112</yloc>
       <draw>Y</draw>
     </GUI>
     </step>

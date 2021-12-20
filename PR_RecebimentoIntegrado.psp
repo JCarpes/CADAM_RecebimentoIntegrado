@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>PR_Recebimento_Integrado</name>
+  <name>PR_RecebimentoIntegrado</name>
   <description/>
   <process_version/>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2021&#x2f;12&#x2f;16 23&#x3a;35&#x3a;38.794</created_date>
+  <created_date>2021&#x2f;12&#x2f;20 11&#x3a;23&#x3a;49.150</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2021&#x2f;12&#x2f;16 23&#x3a;44&#x3a;39.737</modified_date>
+  <modified_date>2021&#x2f;12&#x2f;20 13&#x3a;07&#x3a;31.448</modified_date>
 	<parameters>
     </parameters>
     <parameterConfiguration>
@@ -292,19 +292,6 @@
    <shared_objects_file/>
   <entries>
     <entry>
-      <name>CEF_XML</name>
-      <type>FOLDER_IS_EMPTY</type>
-      <foldername>C&#x3a;&#x5c;XMLFiles</foldername>
-      <include_subfolders>N</include_subfolders>
-      <specify_wildcard>Y</specify_wildcard>
-      <wildcard>.&#x2a;&#x5c;.xml</wildcard>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>512</xloc>
-      <yloc>96</yloc>
-    </entry>
-    <entry>
       <name>START</name>
       <type>SPECIAL</type>
       <start>Y</start>
@@ -320,35 +307,157 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>344</xloc>
+      <xloc>96</xloc>
       <yloc>96</yloc>
     </entry>
     <entry>
-      <name>Simple evaluation</name>
-      <type>SIMPLE_EVAL</type>
-      <valuetype>field</valuetype>
-      <fieldname/>
-      <variablename/>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue/>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>equal</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>N</successwhenvarset>
+      <name>WF_CheckNaoProcessados</name>
+      <type>WORKFLOW</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Entry.Current.Directory&#x7d;&#x2f;WF_CheckNaoProcessados.psw</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <set_append_logfile>N</set_append_logfile>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>784</xloc>
+      <xloc>480</xloc>
       <yloc>96</yloc>
+    </entry>
+    <entry>
+      <name>WF_MoveToEmProcessamento</name>
+      <type>WORKFLOW</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Entry.Current.Directory&#x7d;&#x2f;WF_MoveToEmProcessamento.psw</filename>
+      <transname/>
+      <arg_from_previous>Y</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <set_append_logfile>N</set_append_logfile>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>704</xloc>
+      <yloc>96</yloc>
+    </entry>
+    <entry>
+      <name>WF_Processamento</name>
+      <type>WORKFLOW</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Entry.Current.Directory&#x7d;&#x2f;WF_Processamento.psw</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <set_append_logfile>N</set_append_logfile>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>912</xloc>
+      <yloc>96</yloc>
+    </entry>
+    <entry>
+      <name>Evaluate files metrics</name>
+      <type>EVAL_FILES_METRICS</type>
+      <result_filenames_wildcard/>
+      <Result_field_file/>
+      <Result_field_wildcard/>
+      <Result_field_includesubfolders/>
+      <fields>
+        <field>
+          <source_filefolder>C&#x3a;&#x5c;XMLFiles&#x5c;NaoProcessados</source_filefolder>
+          <wildcard>.&#x2a;&#x5c;.xml</wildcard>
+          <include_subFolders>N</include_subFolders>
+        </field>
+      </fields>
+      <comparevalue>0</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successnumbercondition>greater</successnumbercondition>
+      <source_files>files</source_files>
+      <evaluation_type>count</evaluation_type>
+      <scale>bytes</scale>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>272</xloc>
+      <yloc>96</yloc>
+    </entry>
+    <entry>
+      <name>Workflow Executor</name>
+      <type>WORKFLOW</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Entry.Current.Directory&#x7d;&#x2f;WF_NoFiles.psw</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <set_append_logfile>N</set_append_logfile>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>272</xloc>
+      <yloc>256</yloc>
     </entry>
   </entries>
   <hops>
     <hop>
-      <from>START</from>
-      <to>CEF_XML</to>
+      <from>WF_CheckNaoProcessados</from>
+      <to>WF_MoveToEmProcessamento</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -356,8 +465,35 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>CEF_XML</from>
-      <to>Simple evaluation</to>
+      <from>START</from>
+      <to>Evaluate files metrics</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Evaluate files metrics</from>
+      <to>WF_CheckNaoProcessados</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Evaluate files metrics</from>
+      <to>Workflow Executor</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>WF_MoveToEmProcessamento</from>
+      <to>WF_Processamento</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
