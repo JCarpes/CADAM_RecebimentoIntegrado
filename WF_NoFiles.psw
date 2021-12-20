@@ -435,7 +435,7 @@
     <created_user>-</created_user>
     <created_date>2021&#x2f;12&#x2f;20 12&#x3a;39&#x3a;44.295</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021&#x2f;12&#x2f;20 12&#x3a;42&#x3a;22.151</modified_date>
+    <modified_date>2021&#x2f;12&#x2f;20 19&#x3a;55&#x3a;06.061</modified_date>
 	<key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -472,8 +472,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>200</xloc>
-      <yloc>100</yloc>
+      <xloc>336</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -497,7 +497,7 @@
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>208</yloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
     </step>

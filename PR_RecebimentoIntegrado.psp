@@ -7,7 +7,7 @@
   <created_user>-</created_user>
   <created_date>2021&#x2f;12&#x2f;20 11&#x3a;23&#x3a;49.150</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2021&#x2f;12&#x2f;20 13&#x3a;07&#x3a;31.448</modified_date>
+  <modified_date>2021&#x2f;12&#x2f;20 19&#x3a;58&#x3a;38.781</modified_date>
 	<parameters>
     </parameters>
     <parameterConfiguration>
@@ -369,11 +369,11 @@
       <yloc>96</yloc>
     </entry>
     <entry>
-      <name>WF_Processamento</name>
+      <name>WF_ReadXML</name>
       <type>WORKFLOW</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Entry.Current.Directory&#x7d;&#x2f;WF_Processamento.psw</filename>
+      <filename>&#x24;&#x7b;Internal.Entry.Current.Directory&#x7d;&#x2f;WF_ReadXML.psw</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -407,7 +407,7 @@
       <fields>
         <field>
           <source_filefolder>C&#x3a;&#x5c;XMLFiles&#x5c;NaoProcessados</source_filefolder>
-          <wildcard>.&#x2a;&#x5c;.xml</wildcard>
+          <wildcard>.&#x2a;cteproc&#x5c;.xml</wildcard>
           <include_subFolders>N</include_subFolders>
         </field>
       </fields>
@@ -425,7 +425,7 @@
       <yloc>96</yloc>
     </entry>
     <entry>
-      <name>Workflow Executor</name>
+      <name>WF_NoFiles</name>
       <type>WORKFLOW</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
@@ -451,7 +451,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>272</xloc>
-      <yloc>256</yloc>
+      <yloc>240</yloc>
     </entry>
   </entries>
   <hops>
@@ -484,7 +484,7 @@
     </hop>
     <hop>
       <from>Evaluate files metrics</from>
-      <to>Workflow Executor</to>
+      <to>WF_NoFiles</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -493,7 +493,7 @@
     </hop>
     <hop>
       <from>WF_MoveToEmProcessamento</from>
-      <to>WF_Processamento</to>
+      <to>WF_ReadXML</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
