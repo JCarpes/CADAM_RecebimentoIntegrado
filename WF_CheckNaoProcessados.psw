@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>WF_MoveToEmProcessamento</name>
+    <name>WF_CheckNaoProcessados</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -433,9 +433,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021&#x2f;12&#x2f;20 11&#x3a;27&#x3a;44.982</created_date>
+    <created_date>2021&#x2f;12&#x2f;20 11&#x3a;25&#x3a;40.965</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021&#x2f;12&#x2f;20 20&#x3a;06&#x3a;54.356</modified_date>
+    <modified_date>2021&#x2f;12&#x2f;20 15&#x3a;03&#x3a;42.323</modified_date>
 	<key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -443,21 +443,106 @@
   </notepads>
   <order>
     <hop>
-      <from>MJS_NewPath</from>
-      <to>PF_EmProcessamento</to>
+      <from>Start</from>
+      <to>GF_XMLNaoProcessados</to>
       <enabled>Y</enabled>
       <visible>Y</visible>
     </hop>
     <hop>
-      <from>Get files from result</from>
-      <to>MJS_NewPath</to>
+      <from>GF_XMLNaoProcessados</from>
+      <to>Sort rows</to>
       <enabled>Y</enabled>
       <visible>Y</visible>
     </hop>
   </order>
   <step>
-    <name>Get files from result</name>
-    <type>FilesFromResult</type>
+    <name>GF_XMLNaoProcessados</name>
+    <type>GetFileNames</type>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <filter>
+      <filterfiletype>only_files</filterfiletype>
+    </filter>
+    <doNotFailIfNoFile>N</doNotFailIfNoFile>
+    <rownum>N</rownum>
+    <isaddresult>Y</isaddresult>
+    <filefield>N</filefield>
+    <rownum_field>RowNumber</rownum_field>
+    <filename_Field/>
+    <wildcard_Field/>
+    <exclude_wildcard_Field/>
+    <dynamic_include_subfolders>N</dynamic_include_subfolders>
+    <limit>0</limit>
+    <file>
+      <name>C&#x3a;&#x5c;XMLFiles&#x5c;NaoProcessados</name>
+      <filemask>.&#x2a;cteproc&#x5c;.xml</filemask>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Sort rows</name>
+    <type>SortRows</type>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>lastmodifiedtime</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Start</name>
+    <type>StartWorkflow</type>
     <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
@@ -473,80 +558,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>160</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>MJS_NewPath</name>
-    <type>ScriptValueMod</type>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;var OldPath &#x3d; &#x22;C&#x3a;&#x5c;&#x5c;XMLFiles&#x5c;&#x5c;NaoProcessados&#x5c;&#x5c;&#x22; &#x2b; filename&#x3b;&#xd;&#xa;var NewPath &#x3d; &#x22;C&#x3a;&#x5c;&#x5c;XMLFiles&#x5c;&#x5c;EmProcessamento&#x5c;&#x5c;&#x22; &#x2b; filename&#x3b;&#xd;&#xa;&#xd;&#xa;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>OldPath</name>
-        <rename>OldPath</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>NewPath</name>
-        <rename>NewPath</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>PF_EmProcessamento</name>
-    <type>ProcessFiles</type>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <sourcefilenamefield>OldPath</sourcefilenamefield>
-    <targetfilenamefield>NewPath</targetfilenamefield>
-    <operation_type>move</operation_type>
-    <addresultfilenames>Y</addresultfilenames>
-    <overwritetargetfile>N</overwritetargetfile>
-    <createparentfolder>N</createparentfolder>
-    <simulate>N</simulate>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>112</yloc>
+      <xloc>64</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
     </step>

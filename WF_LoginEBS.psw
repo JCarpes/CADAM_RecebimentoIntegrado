@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>WF_MoveToEmProcessamento</name>
+    <name>WF_LoginEBS</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -433,9 +433,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021&#x2f;12&#x2f;20 11&#x3a;27&#x3a;44.982</created_date>
+    <created_date>2021&#x2f;12&#x2f;21 23&#x3a;08&#x3a;39.054</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021&#x2f;12&#x2f;20 20&#x3a;06&#x3a;54.356</modified_date>
+    <modified_date>2021&#x2f;12&#x2f;30 14&#x3a;25&#x3a;19.779</modified_date>
 	<key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -443,21 +443,33 @@
   </notepads>
   <order>
     <hop>
-      <from>MJS_NewPath</from>
-      <to>PF_EmProcessamento</to>
+      <from>SV_Username</from>
+      <to>SV_Password</to>
       <enabled>Y</enabled>
       <visible>Y</visible>
     </hop>
     <hop>
-      <from>Get files from result</from>
-      <to>MJS_NewPath</to>
+      <from>Start Browser</from>
+      <to>WDD_Language</to>
+      <enabled>Y</enabled>
+      <visible>Y</visible>
+    </hop>
+    <hop>
+      <from>WDD_Language</from>
+      <to>SV_Username</to>
+      <enabled>Y</enabled>
+      <visible>Y</visible>
+    </hop>
+    <hop>
+      <from>SV_Password</from>
+      <to>WC_Login</to>
       <enabled>Y</enabled>
       <visible>Y</visible>
     </hop>
   </order>
   <step>
-    <name>Get files from result</name>
-    <type>FilesFromResult</type>
+    <name>Start Browser</name>
+    <type>BeginStep</type>
     <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
@@ -465,6 +477,18 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+      <browser>Mozilla Firefox</browser>
+      <ignoreIeProtectedModeSettings>N</ignoreIeProtectedModeSettings>
+      <url>http&#x3a;&#x2f;&#x2f;kamn-365-tap02.kamn.itciss.com&#x3a;8000&#x2f;OA_HTML&#x2f;AppsLocalLogin.jsp</url>
+      <delay>0</delay>
+      <maximize>Y</maximize>
+      <startNode>Y</startNode>
+      <notif>Y</notif>
+      <driverName>BROWSER1</driverName>
+      <pageLoadTime>0</pageLoadTime>
+      <retryCount>0</retryCount>
+      <defaultDownloadDirectory/>
+      <clearBrowser>Y</clearBrowser>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -473,15 +497,15 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>160</xloc>
-      <yloc>112</yloc>
+      <xloc>80</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>MJS_NewPath</name>
-    <type>ScriptValueMod</type>
+    <name>SV_Username</name>
+    <type>SetTextStep</type>
     <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
@@ -489,24 +513,30 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xd;&#xa;&#xd;&#xa;var OldPath &#x3d; &#x22;C&#x3a;&#x5c;&#x5c;XMLFiles&#x5c;&#x5c;NaoProcessados&#x5c;&#x5c;&#x22; &#x2b; filename&#x3b;&#xd;&#xa;var NewPath &#x3d; &#x22;C&#x3a;&#x5c;&#x5c;XMLFiles&#x5c;&#x5c;EmProcessamento&#x5c;&#x5c;&#x22; &#x2b; filename&#x3b;&#xd;&#xa;&#xd;&#xa;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>OldPath</name>
-        <rename>OldPath</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>NewPath</name>
-        <rename>NewPath</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>    <cluster_schema/>
+      <driverName>BROWSER1</driverName>
+      <setTextFields>        <field>          <criteria>X-Path</criteria>
+          <value>&#x2f;&#x2f;&#x2a;&#x5b;&#x40;id&#x3d;&#x22;usernameField&#x22;&#x5d;</value>
+          <multiple>No</multiple>
+          <index>0</index>
+          <text>Automation.Edge</text>
+          <clearText>Yes</clearText>
+        <criteriaAttributes>        <item>          <criteria>X-Path</criteria>
+          <criteriaValue>&#x2f;&#x2f;&#x2a;&#x5b;&#x40;id&#x3d;&#x22;usernameField&#x22;&#x5d;</criteriaValue>
+        </item>        <item>          <criteria>Y Co-ordinate</criteria>
+          <criteriaValue>194</criteriaValue>
+        </item>        <item>          <criteria>X Co-ordinate</criteria>
+          <criteriaValue>656</criteriaValue>
+        </item>        <item>          <criteria>Class Name</criteria>
+          <criteriaValue>inp</criteriaValue>
+        </item>        <item>          <criteria>Id</criteria>
+          <criteriaValue>usernameField</criteriaValue>
+        </item>        <item>          <criteria>Tag Name</criteria>
+          <criteriaValue>INPUT</criteriaValue>
+        </item>        <item>          <criteria>CSS Selector</criteria>
+          <criteriaValue>html&#x3e;body&#x3e;div&#x3e;div&#x3e;form&#x3e;div&#x3e;input&#x3a;nth-of-type&#x28;1&#x29;</criteriaValue>
+        </item>        <item>          <criteria>Name</criteria>
+          <criteriaValue>usernameField</criteriaValue>
+        </item>        </criteriaAttributes>        </field>      </setTextFields>    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -514,15 +544,15 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>112</yloc>
+      <xloc>464</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>PF_EmProcessamento</name>
-    <type>ProcessFiles</type>
+    <name>SV_Password</name>
+    <type>SetTextStep</type>
     <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
@@ -530,14 +560,30 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <sourcefilenamefield>OldPath</sourcefilenamefield>
-    <targetfilenamefield>NewPath</targetfilenamefield>
-    <operation_type>move</operation_type>
-    <addresultfilenames>Y</addresultfilenames>
-    <overwritetargetfile>N</overwritetargetfile>
-    <createparentfolder>N</createparentfolder>
-    <simulate>N</simulate>
-    <cluster_schema/>
+      <driverName>BROWSER1</driverName>
+      <setTextFields>        <field>          <criteria>X-Path</criteria>
+          <value>&#x2f;&#x2f;&#x2a;&#x5b;&#x40;id&#x3d;&#x22;passwordField&#x22;&#x5d;</value>
+          <multiple>No</multiple>
+          <index>0</index>
+          <text>welcome21</text>
+          <clearText>Yes</clearText>
+        <criteriaAttributes>        <item>          <criteria>X-Path</criteria>
+          <criteriaValue>&#x2f;&#x2f;&#x2a;&#x5b;&#x40;id&#x3d;&#x22;passwordField&#x22;&#x5d;</criteriaValue>
+        </item>        <item>          <criteria>Y Co-ordinate</criteria>
+          <criteriaValue>260</criteriaValue>
+        </item>        <item>          <criteria>X Co-ordinate</criteria>
+          <criteriaValue>656</criteriaValue>
+        </item>        <item>          <criteria>Class Name</criteria>
+          <criteriaValue>inp</criteriaValue>
+        </item>        <item>          <criteria>Id</criteria>
+          <criteriaValue>passwordField</criteriaValue>
+        </item>        <item>          <criteria>Tag Name</criteria>
+          <criteriaValue>INPUT</criteriaValue>
+        </item>        <item>          <criteria>CSS Selector</criteria>
+          <criteriaValue>html&#x3e;body&#x3e;div&#x3e;div&#x3e;form&#x3e;div&#x3e;input&#x3a;nth-of-type&#x28;1&#x29;</criteriaValue>
+        </item>        <item>          <criteria>Name</criteria>
+          <criteriaValue>passwordField</criteriaValue>
+        </item>        </criteriaAttributes>        </field>      </setTextFields>    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -545,8 +591,98 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>112</yloc>
+      <xloc>672</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>WDD_Language</name>
+    <type>DropDownSelectionStep</type>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <criteria>X-Path</criteria>
+      <value>&#x2f;&#x2f;&#x2a;&#x5b;&#x40;id&#x3d;&#x22;slang&#x22;&#x5d;</value>
+      <multiple>N</multiple>
+      <index>0</index>
+      <driverName>BROWSER1</driverName>
+      <selectionCriteria>Index</selectionCriteria>
+      <selectionValue>1</selectionValue>
+        <criteriaAttributes>        <item>          <criteria>X-Path</criteria>
+          <criteriaValue>&#x2f;&#x2f;&#x2a;&#x5b;&#x40;id&#x3d;&#x22;slang&#x22;&#x5d;</criteriaValue>
+        </item>        <item>          <criteria>Y Co-ordinate</criteria>
+          <criteriaValue>539</criteriaValue>
+        </item>        <item>          <criteria>X Co-ordinate</criteria>
+          <criteriaValue>656</criteriaValue>
+        </item>        <item>          <criteria>Class Name</criteria>
+          <criteriaValue>selector</criteriaValue>
+        </item>        <item>          <criteria>Id</criteria>
+          <criteriaValue>slang</criteriaValue>
+        </item>        <item>          <criteria>Tag Name</criteria>
+          <criteriaValue>SELECT</criteriaValue>
+        </item>        <item>          <criteria>CSS Selector</criteria>
+          <criteriaValue>html&#x3e;body&#x3e;div&#x3e;div&#x3e;div&#x3e;select&#x3a;nth-of-type&#x28;1&#x29;</criteriaValue>
+        </item>        <item>          <criteria>Name</criteria>
+          <criteriaValue>currentLanguage</criteriaValue>
+        </item>        </criteriaAttributes>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>WC_Login</name>
+    <type>ClickStep</type>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <criteria>X-Path</criteria>
+      <clickoptions>NormalClick</clickoptions>
+      <value>&#x2f;&#x2f;&#x2a;&#x5b;&#x40;id&#x3d;&#x22;ButtonBox&#x22;&#x5d;&#x2f;BUTTON&#x5b;1&#x5d;</value>
+      <multiple>N</multiple>
+      <index>0</index>
+      <driverName>BROWSER1</driverName>
+      <numberOfClicks>1</numberOfClicks>
+        <criteriaAttributes>        <item>          <criteria>X-Path</criteria>
+          <criteriaValue>&#x2f;&#x2f;&#x2a;&#x5b;&#x40;id&#x3d;&#x22;ButtonBox&#x22;&#x5d;&#x2f;BUTTON&#x5b;1&#x5d;</criteriaValue>
+        </item>        <item>          <criteria>Y Co-ordinate</criteria>
+          <criteriaValue>312</criteriaValue>
+        </item>        <item>          <criteria>X Co-ordinate</criteria>
+          <criteriaValue>692</criteriaValue>
+        </item>        <item>          <criteria>Class Name</criteria>
+          <criteriaValue>OraButton left</criteriaValue>
+        </item>        <item>          <criteria>Tag Name</criteria>
+          <criteriaValue>BUTTON</criteriaValue>
+        </item>        <item>          <criteria>CSS Selector</criteria>
+          <criteriaValue>html&#x3e;body&#x3e;div&#x3e;div&#x3e;div&#x3e;button&#x3a;nth-of-type&#x28;1&#x29;</criteriaValue>
+        </item>        </criteriaAttributes>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>864</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
